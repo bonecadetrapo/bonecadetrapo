@@ -1,5 +1,7 @@
 body {
     padding-top: 50px;
+	background: url(../image.jpg) center center; 
+  background-size:auto;
 }
 
 .portfolio-item {
