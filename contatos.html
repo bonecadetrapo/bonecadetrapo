@@ -24,7 +24,8 @@
 <div class="container" align="center">
     <div class="row"><div class="well">
                 <div class="row">
-                   <form id="formdecontato" action" " method="post"><fieldset>
+                   <form id="formdecontato" action="https://script.google.com/macros/s/AKfycbz0RwEWHNOYFCOfF5zhmhqX2oGgMMMNZ4V_FiDhk0_uEiaroek/exec" method="post">
+                   <fieldset>
                     <div class="col-md-12"><div class="col-md-6">
                         <div class="form-group">
                             <label for="name">
@@ -53,9 +54,10 @@
                     <!-- Success message -->
 <div class="alert alert-success" role="alert" id="mensagem_sucesso">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
 
-                        <button type="submit" class="btn btn-primary" id="btnEnviar"><span class="glyphicon glyphicon-send"></span>
-                             Enviar Mensagem</button>
-                </div></fieldset>
+                        <button type="submit" class="btn btn-primary" id="btnEnviar" disabled="disabled"><span class="glyphicon glyphicon-send"></span>
+							Enviar Mensagem</button><p id="result"></p>
+                </div>
+				</fieldset>
                 </form>
         </div>
     </div>
@@ -99,5 +101,63 @@
 	<script src="js/bootstrapvalidator.js"></script>
 	<script type="text/javascript">$(document).ready(function() {$('map').imageMapResize();});</script>
     <script src="js/imageMapResizer.min.js"></script>
+	<script data-cfasync="false" type="text/javascript">
+jQuery( document ).ready(function( $ ) {
+	// variable to hold request
+	var request;
+	// bind to the submit event of our form
+	$("#formdecontato").submit(function(event){
+		// abort any pending request
+		if (request) {
+			request.abort();
+		}
+		// setup some local variables
+		var $form = $(this);
+		// let's select and cache all the fields
+		var $inputs = $form.find("input, select, button, textarea");
+		// serialize the data in the form
+		var serializedData = $form.serialize();
+	
+		// let's disable the inputs for the duration of the ajax request
+		// Note: we disable elements AFTER the form data has been serialized.
+		// Disabled form elements will not be serialized.
+		$inputs.prop("disabled", true);
+		$('#result').text('Sending data...');
+	
+		// fire off the request to /form.php
+		request = $.ajax({
+			url: "https://script.google.com/macros/s/AKfycbz0RwEWHNOYFCOfF5zhmhqX2oGgMMMNZ4V_FiDhk0_uEiaroek/exec",
+			type: "post",
+			data: serializedData
+		});
+	
+		// callback handler that will be called on success
+		request.done(function (response, textStatus, jqXHR){
+			// log a message to the console
+			$('#result').html('<a href="https://docs.google.com/spreadsheets/d/10tt64TiALYhPMqR2fh9JzkuhxW7oC0rXXPb_pmJ7HAY/edit?usp=sharing" target="_blank">Success - see Google Sheet</a>');
+			console.log("Hooray, it worked!");
+		});
+	
+		// callback handler that will be called on failure
+		request.fail(function (jqXHR, textStatus, errorThrown){
+			// log the error to the console
+			console.error(
+				"The following error occured: "+
+				textStatus, errorThrown
+			);
+		});
+	
+		// callback handler that will be called regardless
+		// if the request failed or succeeded
+		request.always(function () {
+			// reenable the inputs
+			$inputs.prop("disabled", false);
+		});
+	
+		// prevent default posting of form
+		event.preventDefault();
+	});
+});
+</script>	
 </body>
 </html>
