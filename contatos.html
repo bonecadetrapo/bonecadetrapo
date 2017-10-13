@@ -8,14 +8,13 @@
     <title>Ateliê Boneca De Trapo</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
-    <link href="css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body background="image.jpg">
 
 <!-- <div style="background: url(rendatop.png) repeat-x top;">  COLOCAR RENDA, TIRAR MODO COMENTÁRIO-->	  
   <div align="center"> 
 	  
-		<img src="https://i.imgur.com/yDjR0r5.png" alt="" usemap="#map1506965301721" class="img-responsive">
+		<img src="images/topo.png" alt="" usemap="#map1506965301721" class="img-responsive">
 <map id="map1506965301721" name="map1506965301721"><area shape="rect" coords="84,69,168,109" title="" alt="" href="index.html" target="_self"><area shape="rect" coords="287,66,390,109" title="" alt="" href="galeria.html" target="_self"><area shape="rect" coords="779,66,885,109" title="" alt="" href="https://www.elo7.com.br/bonecadetrapo/loja" target="_self"><area shape="rect" coords="980,67,1078,108" title="" alt="" href="contatos.html" target="_self"><area shape="rect" coords="1148,177,1149,178" alt="Image HTML map generator" title="HTML Map creator" href="http://www.html-map.com/" target="_self"></map>
 		</div>
 		
@@ -24,7 +23,7 @@
 <div class="container" align="center">
     <div class="row"><div class="well">
                 <div class="row">
-                   <form id="formdecontato" action="https://script.google.com/macros/s/AKfycbz0RwEWHNOYFCOfF5zhmhqX2oGgMMMNZ4V_FiDhk0_uEiaroek/exec" method="post">
+                   <form id="formdecontato" action="https://script.google.com/macros/s/AKfycbz0RwEWHNOYFCOfF5zhmhqX2oGgMMMNZ4V_FiDhk0_uEiaroek/exec" method="post" data-toggle="validator">
                    <fieldset>
                     <div class="col-md-12"><div class="col-md-6">
                         <div class="form-group">
@@ -33,7 +32,9 @@
                                 <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                 </span>
-                            <input type="text" class="form-control" name="nome" placeholder="Nome">
+                            <input type="text" class="form-control" name="nome" placeholder="Nome" data-validation="length alphanumeric" 
+		 data-validation-length="min3" 
+		 data-validation-error-msg="O nome tem que ter 3 caratecteres no minimo" required>
                             </div>
                         </div>
                         </div>
@@ -43,28 +44,25 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" class="form-control" name="email" placeholder="Email"></div>
+  <input type="email" class="form-control" name="email" placeholder="Email" data-validation="email" data-validation-error-msg="Email invalido" required>                                    
+                                </div>
+                                <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="name">
-                                Mensagem</label>
+                                Mensagem </label>&nbsp;(<span id="pres-max-length">300</span> caracteres sobrando)
                             <textarea name="mensagem" id="mensagem" class="form-control" rows="9" cols="25"
-                                placeholder="Digite a mensagem"></textarea>
+                                placeholder="Digite a mensagem" data-validation="length alphanumeric" 
+		 data-validation-length="min3" 
+		 data-validation-error-msg="A mensagem tem que ter no minimo 3 caracteres e 300 no máximo" required></textarea>
                         </div>
-                    <!-- Success message -->
-<div class="alert alert-success" role="alert" id="mensagem_sucesso">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+                    
+<div class="alert alert-success" role="alert" id="mensagem_sucesso">Sucesso <i class="glyphicon glyphicon-thumbs-up"></i> Agradecemos por entrar em contato, responderemos o mais rápido possível.</div>
 
-<<<<<<< HEAD
-                        <button type="submit" class="btn btn-primary" id="btnEnviar" disabled="disabled"><span class="glyphicon glyphicon-send"></span>
-							Enviar Mensagem</button><p id="result"></p>
+                        <button type="submit" class="btn btn-primary" id="btnEnviar"><span class="glyphicon glyphicon-send"></span>
+							Enviar Mensagem</button>
                 </div>
 				</fieldset>
-=======
-                        <button type="submit" class="btn btn-primary" id="btnEnviar"><span class="glyphicon glyphicon-send"></span>
-                             Enviar Mensagem</button>
-                </div>                <div class="g-recaptcha" data-sitekey="6LcTMzQUAAAAADOty7a3sgYJnAwddsS4rNNZg72j"></div>
-</fieldset>
->>>>>>> 9ef7deebb56f6c43da01c71664c3c58a28a8cb2a
                 </form>
         </div>
     </div>
@@ -105,11 +103,10 @@
 	</footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrapvalidator.js"></script>
+	<script src="js/validator.js"></script>
 	<script type="text/javascript">$(document).ready(function() {$('map').imageMapResize();});</script>
     <script src="js/imageMapResizer.min.js"></script>
-<<<<<<< HEAD
-	<script data-cfasync="false" type="text/javascript">
+<script data-cfasync="false" type="text/javascript">
 jQuery( document ).ready(function( $ ) {
 	// variable to hold request
 	var request;
@@ -130,7 +127,6 @@ jQuery( document ).ready(function( $ ) {
 		// Note: we disable elements AFTER the form data has been serialized.
 		// Disabled form elements will not be serialized.
 		$inputs.prop("disabled", true);
-		$('#result').text('Sending data...');
 	
 		// fire off the request to /form.php
 		request = $.ajax({
@@ -142,17 +138,7 @@ jQuery( document ).ready(function( $ ) {
 		// callback handler that will be called on success
 		request.done(function (response, textStatus, jqXHR){
 			// log a message to the console
-			$('#result').html('<a href="https://docs.google.com/spreadsheets/d/10tt64TiALYhPMqR2fh9JzkuhxW7oC0rXXPb_pmJ7HAY/edit?usp=sharing" target="_blank">Success - see Google Sheet</a>');
-			console.log("Hooray, it worked!");
-		});
-	
-		// callback handler that will be called on failure
-		request.fail(function (jqXHR, textStatus, errorThrown){
-			// log the error to the console
-			console.error(
-				"The following error occured: "+
-				textStatus, errorThrown
-			);
+			$('#mensagem_sucesso').slideDown({ opacity: "show" }, "slow");
 		});
 	
 		// callback handler that will be called regardless
@@ -166,9 +152,6 @@ jQuery( document ).ready(function( $ ) {
 		event.preventDefault();
 	});
 });
-</script>	
-=======
-	    <script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
->>>>>>> 9ef7deebb56f6c43da01c71664c3c58a28a8cb2a
+</script>
 </body>
 </html>
