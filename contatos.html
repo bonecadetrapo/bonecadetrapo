@@ -54,7 +54,9 @@
                             <label for="name">
                                 Mensagem </label>&nbsp;(<span id="pres-max-length">300</span> caracteres sobrando)
                             <textarea name="mensagem" id="mensagem" class="form-control" rows="9" cols="25"
-                                placeholder="Digite a mensagem" required></textarea>
+                                placeholder="Digite a mensagem" data-validation="length alphanumeric" 
+		 data-validation-length="min3" 
+		 data-validation-error-msg="A mensagem tem que ter no minimo 3 caracteres e 300 no máximo" required></textarea>
                         </div>
                     
 <div class="alert alert-success" role="alert" id="mensagem_sucesso">Sucesso <i class="glyphicon glyphicon-thumbs-up"></i> Agradecemos por entrar em contato, responderemos o mais rápido possível.</div>
