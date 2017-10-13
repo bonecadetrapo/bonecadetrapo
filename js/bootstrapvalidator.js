@@ -1870,6 +1870,10 @@ function(a) {
                 }
             }
         })
+        if(grecaptcha.getResponse() == ""){
+		alert("Fuck You");
+	}
+	 else{
         .on('success.form.bv', function(e) {
             $('#mensagem_sucesso').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#formdecontato').data('bootstrapValidator').resetForm();
@@ -1877,6 +1881,7 @@ function(a) {
             // Prevent form submission
             e.preventDefault();
 
+		
             // Get the form instance
             var $form = $(e.target);
 
@@ -1888,4 +1893,4 @@ function(a) {
                 console.log(result);
             }, 'json');
         });
-});
+});}
