@@ -1826,6 +1826,7 @@ function(a) {
         }
     }
 }(window.jQuery);
+
  $(document).ready(function() {
     $('#formdecontato').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -1859,7 +1860,7 @@ function(a) {
             mensagem: {
                 validators: {
                       stringLength: {
-                        min: 10,
+                        min: 2,
                         max: 200,
                         message:'Digite uma mensagem de pelo menos 10 caracteres e no máximo 200'
                     },
@@ -1870,10 +1871,6 @@ function(a) {
                 }
             }
         })
-        if(grecaptcha.getResponse() == ""){
-		alert("Fuck You");
-	}
-	 else{
         .on('success.form.bv', function(e) {
             $('#mensagem_sucesso').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#formdecontato').data('bootstrapValidator').resetForm();
@@ -1893,4 +1890,5 @@ function(a) {
                 console.log(result);
             }, 'json');
         });
-});}
+});
+
